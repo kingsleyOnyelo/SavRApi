@@ -4,9 +4,12 @@ const port = 2020;
 const routes = require('./Routes/api');
 const mongoose = require('mongoose');
 const app = express();
+const env = require('./env');
+
+
 app.use(express.urlencoded(false));
 app.use(express.json());
-const env = require('./env');
+
 
 
 /* mongoose.connect('mongodb://127.0.0.1:27017/KaleDB')
@@ -21,7 +24,7 @@ mongoose.connect(process.env.MONGODB_URL)
 app.use(routes);
 
 
-app.listen(port, ()=>{
-    console.log("listening on port " + port);
+app.listen(env.portt, ()=>{
+    console.log("listening on port " + env.port);
 })
 
