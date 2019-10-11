@@ -3,12 +3,10 @@ require('dotenv').config();
 const port = 2020;
 const routes = require('./Routes/api');
 const mongoose = require('mongoose');
-const app = express();
 const env = require('./env');
 
 
-app.use(express.urlencoded(false));
-app.use(express.json());
+
 
 
 
@@ -20,11 +18,14 @@ mongoose.connect(process.env.MONGODB_URL)
 .then(()=> console.log("Successfully connected to DB"))
 .catch(()=>console.log("Error connecting to DB"))
 
+const app = express();
 
+app.use(express.urlencoded(false));
+app.use(express.json());
 app.use(routes);
 
 
-app.listen(env.portt, ()=>{
+app.listen(env.port, ()=>{
     console.log("listening on port " + env.port);
 })
 
